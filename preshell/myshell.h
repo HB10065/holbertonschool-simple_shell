@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdlib.h>
+
 void printppid(void);
+char **splitstr(char *str);
 
 #endif

@@ -13,8 +13,11 @@ int main(void)
 	{
 		printf("$");
 		gl = getline(&string, &strlength, stdin);
-		if (string != NULL)
+		if (gl == -1)
+			break;
+		if (gl > 1)
 			printf("%s", string);
 	}
+	free(string);
 	return (0);
 }
