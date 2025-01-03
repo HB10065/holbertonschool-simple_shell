@@ -5,7 +5,7 @@
  */
 int main(void)
 {
-	char str[] = "Hola como estas";
+	char str[] = "Hola como estas, YYYYYYYYYYYYYYYYY aaaaaaaaaaaaa 125973241687";
 	char **astr = splitstr(str);
 	int i = 0;
 

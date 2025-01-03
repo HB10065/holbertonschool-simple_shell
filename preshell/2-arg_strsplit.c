@@ -7,7 +7,7 @@ char **splitstr(char *str)
 {
 	char **spstr;
 	char *token;
-	int i = 1, size = 10;
+	int i = 0, size = 10;
 
 	spstr = malloc(size * sizeof(char *));
 	if (spstr == NULL)
