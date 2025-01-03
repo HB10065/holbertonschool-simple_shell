@@ -23,4 +23,5 @@ int main(void)
 		wait(&status);
 		i++;
 	}
+	return (0);
 }
