@@ -46,6 +46,6 @@ void lsfunc(char** str)
 {
 	if (str_comp(str[1], "-l") == 0)
 		      lslfunc();
-	else if (str_comp(str[1], NULL) == 0)
+	else if (str[1] == NULL)
 		      lsfunction();
 }
