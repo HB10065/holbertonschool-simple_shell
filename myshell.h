@@ -11,5 +11,7 @@
 
 char **splitstr(char *str);
 int str_comp(char* str, char* str2);
+char *env(void);
+char *path(char* str);
 
 #endif

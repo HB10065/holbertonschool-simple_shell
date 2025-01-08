@@ -71,8 +71,8 @@ int main(void)
 	extern char **environ;
 	ssize_t gl = 0;
 	size_t strlength;
-	char* string;
-	char** split;
+	char *string, *com_path;
+	char **split;
 	pid_t pid;
 
 	while(gl != -1)
@@ -85,15 +85,17 @@ int main(void)
 			string[gl - 1] = '\0';
 
 		split = splitstr(string);
-		if (str_comp(split[0], "ls") == 0)
+
+		com_path = path(split[0]);
+		if (com_path != NULL)
 		{
 			pid = fork();
 			if (pid == 0)
-				execve("/bin/ls", split, environ);
+				execve(com_path, split, environ);
 			else
 				wait(NULL);
 		}
-		else if (string[0] != '\n')
+		else if (com_path == NULL && string[0] != '\n')
 			putchar(10);
 	}
 	free(split);

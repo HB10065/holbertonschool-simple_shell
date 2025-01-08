@@ -13,8 +13,8 @@ char *env(void)
 	while (environ[i] != NULL)
 	{
 		if (environ[i][0] == 'P' && environ[i][1] == 'A' 
-				&& environ[i][1] == 'T' && environ[i][1] == 'H' &&
-				environ[i][1] == '=')
+				&& environ[i][2] == 'T' && environ[i][3] == 'H' &&
+				environ[i][4] == '=')
 		{
 			path_size = strlen(environ[i] + 5);
 			pathd = malloc(path_size + 1);
@@ -33,15 +33,20 @@ char *env(void)
  */
 char *path(char* str)
 {
-	char *path = env(), *token;
+	char *path = env(), *token, *final_path = NULL;
 
 	token = strtok(path, ":");
 	while(token != NULL)
 	{
-		token = strncat(token, "/");
-		token = strncat(token, str);
-		if (access(token, F_OK) == 0)
-			return (token);
+		final_path = malloc(strlen(token) + strlen(str) + 2);
+		if (final_path == NULL)
+			return(NULL);
+
+		strcpy(final_path, token);
+		strncat(final_path, "/", 2);
+		strncat(final_path, str, strlen(str));
+		if (access(final_path, F_OK) == 0)
+			return (final_path);
 
 		token = strtok(NULL, ":");
 	}
