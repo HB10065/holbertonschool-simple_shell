@@ -79,7 +79,7 @@ int main(void)
 	{
 		printf("Sheesh: ");
 		gl = getline(&string, &strlength, stdin);
-		if (gl == - 1)
+		if (gl == - 1 || strcmp(string, "exit\n") == 0)
 			break;
 		if (string[0] != '\n' && string[gl -1] == '\n')
 			string[gl - 1] = '\0';
@@ -95,9 +95,8 @@ int main(void)
 			else
 				wait(NULL);
 		}
-		else if (com_path == NULL && string[0] != '\n')
-			putchar(10);
 	}
+	free(com_path);
 	free(split);
 	free(string);
 	return (0);
