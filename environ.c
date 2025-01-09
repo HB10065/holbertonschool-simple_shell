@@ -20,7 +20,6 @@ char *env(void)
 			pathd = malloc(path_size + 1);
 			if (pathd == NULL)
 			{
-				free(pathd);
 				return (NULL);
 			}
 			strcpy(pathd, environ[i] +5);
@@ -39,11 +38,14 @@ char *path(char* str)
 	char *path = env(), *token, *final_path = NULL;
 
 	if (str[0] == '/')
+	{
+		free(path);
 		return (str);
+	}
 	token = strtok(path, ":");
 	while(token != NULL)
 	{
-		final_path = malloc(strlen(token) + strlen(str) + 2);
+		final_path = realloc(final_path, strlen(token) + strlen(str) + 2);
 		if (final_path == NULL)
 			return(NULL);
 

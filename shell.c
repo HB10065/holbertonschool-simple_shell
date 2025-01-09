@@ -1,6 +1,16 @@
 #include "myshell.h"
 
 /**
+ *
+ */
+void freestr(char **str)
+{
+	if (str == NULL)
+		return;
+	free(str);
+}
+
+/**
  * splitstr - Separa un String en varios utilizando strtok
  * @str: String que recibe
  * Return: Un array de Strings con cada Token de strtok
@@ -51,7 +61,6 @@ int main(void)
 		gl = getline(&string, &strlength, stdin);
 		if (gl == - 1 || strcmp(string, "exit\n") == 0)
 		{
-			free(string);
 				break;
 		}
 		if (string[0] != '\n' && string[gl -1] == '\n')
@@ -67,9 +76,9 @@ int main(void)
 				execve(com_path, split, environ);
 			else
 				wait(NULL);
+			free(com_path);
 		}
-		free(com_path);
-		free(split);
+		freestr(split);
 		com_path = NULL;
 		split = NULL;
 	}
