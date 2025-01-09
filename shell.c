@@ -18,25 +18,25 @@ void freestr(char **str)
 char **splitstr(char *str)
 {
 	char **spstr;
-	char *token, *str_copy = strdup(str);
+	char *token, *str_copy = strdup(str), *str_copy2 = strdup(str);
 	int i = 0, cantidad = 0;
 
-	token = strtok(str_copy, " ");
+	token = strtok(str_copy, " \t\n");
 	while (token != NULL)
 	{
 		cantidad++;
-		token = strtok(NULL, " ");
+		token = strtok(NULL, " \n\t");
 	}
 	free(str_copy);
 	spstr = malloc((cantidad + 1) * sizeof(char*));
 	if (spstr == NULL)
 		return (NULL);
-	token = strtok(str, " ");
+	token = strtok(str_copy2, " \n\t");
 	while (token != NULL)
 	{
 		spstr[i] = token;
 		i++;
-		token = strtok(NULL, " ");
+		token = strtok(NULL, " \n\t");
 	}
 	spstr[i] = token;
 	return (spstr);
@@ -57,14 +57,15 @@ int main(void)
 
 	while(gl != -1)
 	{
-		printf("Sheesh: ");
+		if (isatty(STDIN_FILENO))
+			printf("Sheesh: ");
 		gl = getline(&string, &strlength, stdin);
 		if (gl == - 1 || strcmp(string, "exit\n") == 0)
-		{
 				break;
-		}
-		if (string[0] != '\n' && string[gl -1] == '\n')
-			string[gl - 1] = '\0';
+		if (strcmp(string, "\n") == 0)
+			continue;
+		/*if (string[0] != '\n' && string[gl -1] == '\n')*/
+			/*string[gl - 1] = '\0';*/
 
 		split = splitstr(string);
 
@@ -76,9 +77,9 @@ int main(void)
 				execve(com_path, split, environ);
 			else
 				wait(NULL);
+			free(com_path);
 		}
-		free(com_path);
-		freestr(split);
+		free(split);
 		com_path = NULL;
 		split = NULL;
 	}
