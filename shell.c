@@ -38,6 +38,7 @@ char **splitstr(char *str)
 		i++;
 		token = strtok(NULL, " ");
 	}
+	spstr[i] = token;
 	return (spstr);
 }
 
@@ -50,7 +51,7 @@ int main(void)
 	extern char **environ;
 	ssize_t gl = 0;
 	size_t strlength;
-	char *string, *com_path;
+	char *string = NULL, *com_path;
 	char **split;
 	pid_t pid;
 
@@ -75,8 +76,8 @@ int main(void)
 				execve(com_path, split, environ);
 			else
 				wait(NULL);
-			free(com_path);
 		}
+		free(com_path);
 		freestr(split);
 		com_path = NULL;
 		split = NULL;
