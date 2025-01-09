@@ -19,7 +19,10 @@ char *env(void)
 			path_size = strlen(environ[i] + 5);
 			pathd = malloc(path_size + 1);
 			if (pathd == NULL)
+			{
+				free(pathd);
 				return (NULL);
+			}
 			strcpy(pathd, environ[i] +5);
 			break;
 		}
@@ -48,9 +51,13 @@ char *path(char* str)
 		strncat(final_path, "/", 2);
 		strncat(final_path, str, strlen(str));
 		if (access(final_path, F_OK) == 0)
+		{
+			free(path);
 			return (final_path);
+		}
 
 		token = strtok(NULL, ":");
 	}
+	free(path);
 	return (NULL);
 }

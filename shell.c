@@ -7,29 +7,29 @@
  */
 char **splitstr(char *str)
 {
-        char **spstr;
-        char *token;
-        int i = 0, size = 10;
+	char **spstr;
+	char *token;
+	int i = 0, size = 10;
 
-        spstr = malloc(size * sizeof(char *));
-        if (spstr == NULL)
-                return (NULL);
+	spstr = malloc(size * sizeof(char *));
+	if (spstr == NULL)
+		return (NULL);
 
-        token = strtok(str, " ");
-        while (token != NULL)
-        {
-                if (i >= size)
-                {
-                        size = size * 2;
-                        spstr = realloc(spstr, size * sizeof(char *));
-                        if (spstr == NULL)
-                                return (NULL);
-                }
-                spstr[i] = token;
-                i++;
-                token = strtok(NULL, " ");
-        }
-        return (spstr);
+	token = strtok(str, " ");
+	while (token != NULL)
+	{
+		if (i >= size)
+		{
+			size = size * 2;
+			spstr = realloc(spstr, size * sizeof(char *));
+			if (spstr == NULL)
+				return (NULL);
+		}
+		spstr[i] = token;
+		i++;
+		token = strtok(NULL, " ");
+	}
+	return (spstr);
 }
 
 /**
@@ -50,7 +50,10 @@ int main(void)
 		printf("Sheesh: ");
 		gl = getline(&string, &strlength, stdin);
 		if (gl == - 1 || strcmp(string, "exit\n") == 0)
-			break;
+		{
+			free(string);
+				break;
+		}
 		if (string[0] != '\n' && string[gl -1] == '\n')
 			string[gl - 1] = '\0';
 
@@ -65,9 +68,11 @@ int main(void)
 			else
 				wait(NULL);
 		}
+		free(com_path);
+		free(split);
+		com_path = NULL;
+		split = NULL;
 	}
-	free(com_path);
-	free(split);
 	free(string);
 	return (0);
 }
