@@ -18,23 +18,22 @@ void freestr(char **str)
 char **splitstr(char *str)
 {
 	char **spstr;
-	char *token;
-	int i = 0, size = 10;
+	char *token, *str_copy = strdup(str);
+	int i = 0, cantidad = 0;
 
-	spstr = malloc(size * sizeof(char *));
+	token = strtok(str_copy, " ");
+	while (token != NULL)
+	{
+		cantidad++;
+		token = strtok(NULL, " ");
+	}
+	free(str_copy);
+	spstr = malloc((cantidad + 1) * sizeof(char*));
 	if (spstr == NULL)
 		return (NULL);
-
 	token = strtok(str, " ");
 	while (token != NULL)
 	{
-		if (i >= size)
-		{
-			size = size * 2;
-			spstr = realloc(spstr, size * sizeof(char *));
-			if (spstr == NULL)
-				return (NULL);
-		}
 		spstr[i] = token;
 		i++;
 		token = strtok(NULL, " ");
