@@ -57,6 +57,7 @@ int main(void)
 
 	while(gl != -1)
 	{
+		printf("Sheesh: ");
 		gl = getline(&string, &strlength, stdin);
 		if (gl == - 1 || strcmp(string, "exit\n") == 0)
 		{
