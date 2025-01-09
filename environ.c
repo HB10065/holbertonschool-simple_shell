@@ -35,6 +35,8 @@ char *path(char* str)
 {
 	char *path = env(), *token, *final_path = NULL;
 
+	if (str[0] == '/')
+		return (str);
 	token = strtok(path, ":");
 	while(token != NULL)
 	{

@@ -1,36 +1,6 @@
 #include "myshell.h"
 
 /**
- *
- */
-int str_comp(char* str, char* str2)
-{
-	int s1 = 0, s2 = 0;
-
-	if ((str == NULL && str2 != NULL) || (str != NULL && str2 == NULL))
-		return (-1);
-	if (str == NULL && str2 == NULL)
-		return (0);
-
-	while (str[s1] != '\0')
-		s1++;
-	while (str2[s2] != '\0')
-		s2++;
-	if (s1 != s2)
-		return (-1);
-
-	s1 = 0;
-	while (str[s1] != '\0' && str2[s1] != '\0')
-	{
-		if (str[s1] != str2[s1])
-			return (-1);
-		s1++;
-	}
-
-	return (0);
-}
-
-/**
  * splitstr - Separa un String en varios utilizando strtok
  * @str: String que recibe
  * Return: Un array de Strings con cada Token de strtok
