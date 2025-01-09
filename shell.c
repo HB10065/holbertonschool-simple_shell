@@ -39,6 +39,7 @@ char **splitstr(char *str)
 		token = strtok(NULL, " \n\t");
 	}
 	spstr[i] = token;
+	free(str_copy2);
 	return (spstr);
 }
 
@@ -77,7 +78,7 @@ int main(void)
 				execve(com_path, split, environ);
 			else
 				wait(NULL);
-			free(com_path);
+		/*	free(com_path);*/
 		}
 		free(split);
 		com_path = NULL;
