@@ -35,14 +35,10 @@ char *env(void)
  */
 char *path(char* str)
 {
-	char *path = env(), *token, *final_path = NULL;
+	char *path = env(), *token, *final_path = NULL, *path_copy = NULL;
 
-	if (str[0] == '/')
-	{
-		free(path);
-		return (str);
-	}
-	token = strtok(path, ":");
+	path_copy = strdup(path);
+	token = strtok(path_copy, ":");
 	while(token != NULL)
 	{
 		final_path = realloc(final_path, strlen(token) + strlen(str) + 2);
@@ -54,12 +50,13 @@ char *path(char* str)
 		strncat(final_path, str, strlen(str));
 		if (access(final_path, F_OK) == 0)
 		{
+			free(path_copy);
 			free(path);
 			return (final_path);
 		}
-
 		token = strtok(NULL, ":");
 	}
+	free(path_copy);
 	free(path);
 	return (NULL);
 }

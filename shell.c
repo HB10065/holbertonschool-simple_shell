@@ -5,8 +5,16 @@
  */
 void freestr(char **str)
 {
+	int i = 0;
+
 	if (str == NULL)
 		return;
+	while (str[i] != NULL)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str[i]);
 	free(str);
 }
 
@@ -18,7 +26,8 @@ void freestr(char **str)
 char **splitstr(char *str)
 {
 	char **spstr;
-	char *token, *str_copy = strdup(str), *str_copy2 = strdup(str);
+	char *token, *str_copy = strdup(str);
+	char *str_copy2 = strdup(str);
 	int i = 0, cantidad = 0;
 
 	token = strtok(str_copy, " \t\n");
@@ -34,12 +43,12 @@ char **splitstr(char *str)
 	token = strtok(str_copy2, " \n\t");
 	while (token != NULL)
 	{
-		spstr[i] = token;
+		spstr[i] = malloc(strlen(token) + 1);
+		strcpy(spstr[i], token);
 		i++;
 		token = strtok(NULL, " \n\t");
 	}
-	spstr[i] = token;
-	free(str_copy2);
+	spstr[i] = NULL;
 	return (spstr);
 }
 
@@ -52,8 +61,7 @@ int main(void)
 	extern char **environ;
 	ssize_t gl = 0;
 	size_t strlength;
-	char *string = NULL, *com_path;
-	char **split;
+	char *string = NULL, *com_path, **split;
 	pid_t pid;
 
 	while(gl != -1)
@@ -62,25 +70,32 @@ int main(void)
 			printf("Sheesh: ");
 		gl = getline(&string, &strlength, stdin);
 		if (gl == - 1 || strcmp(string, "exit\n") == 0)
-				break;
+			break;
 		if (strcmp(string, "\n") == 0)
 			continue;
-		/*if (string[0] != '\n' && string[gl -1] == '\n')*/
-			/*string[gl - 1] = '\0';*/
-
 		split = splitstr(string);
-
-		com_path = path(split[0]);
-		if (com_path != NULL)
+		if (access(split[0], F_OK) == 0)
 		{
 			pid = fork();
 			if (pid == 0)
-				execve(com_path, split, environ);
+				execve(split[0], split, environ);
 			else
 				wait(NULL);
-		/*	free(com_path);*/
 		}
-		free(split);
+		else
+		{
+			com_path = path(split[0]);
+			if (com_path != NULL)
+			{
+				pid = fork();
+				if (pid == 0)
+					execve(com_path, split, environ);
+				else
+					wait(NULL);
+			}
+			free(com_path);
+		}
+		freestr(split);
 		com_path = NULL;
 		split = NULL;
 	}
