@@ -84,9 +84,10 @@ char **splitstr(char *str)
  * @split: Array de argumentos
  * @environ: Variables de entorno
  */
-void execute_command(char *com_path, char **split, char **environ)
+int execute_command(char *com_path, char **split, char **environ)
 {
 	pid_t pid;
+	int status;
 
 	pid = fork();
 	if (pid == 0)
@@ -98,7 +99,9 @@ void execute_command(char *com_path, char **split, char **environ)
 		exit(EXIT_FAILURE);
 	}
 	else if (pid > 0)
-		wait(NULL);
+		wait(&status);
+	
+	return (status);
 }
 
 /**
@@ -111,6 +114,7 @@ int main(void)
 	ssize_t gl = 0;
 	size_t strlength = 0;
 	char *string = NULL, *com_path = NULL, **split = NULL;
+	int status;
 
 	while (gl != -1)
 	{
@@ -128,21 +132,21 @@ int main(void)
 			continue;
 		}
 		if (access(split[0], F_OK) == 0)
-			execute_command(split[0], split, environ);
+			status = execute_command(split[0], split, environ);
 		else
 		{
 			com_path = path(split[0]);
 			if (com_path != NULL)
 			{
-				execute_command(com_path, split, environ);
+				status = execute_command(com_path, split, environ);
 				free(com_path);
 			}
 			else
-				printf("not found: %s\n", split[0]);
+				fprintf(stderr, "%s: not found\n", split[0]);
 		}
 		freestr(split);
 		split = NULL;
 	}
 	free(string);
-	return (0);
+	return (status);
 }
