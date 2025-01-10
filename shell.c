@@ -142,7 +142,10 @@ int main(void)
 				free(com_path);
 			}
 			else
-				fprintf(stderr, "%s: not found\n", split[0]);
+			{
+				fprintf(stderr, "./hsh: 1: %s: not found\n", split[0]);
+				status = 127;
+			}
 		}
 		freestr(split);
 		split = NULL;
