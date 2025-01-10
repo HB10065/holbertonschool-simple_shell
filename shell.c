@@ -32,7 +32,6 @@ char **splitstr(char *str)
 	str_copy = strdup(str);
 	if (str_copy == NULL)
 		return (NULL);
-
 	token = strtok(str_copy, " \t\n");
 	while (token != NULL)
 	{
@@ -40,18 +39,15 @@ char **splitstr(char *str)
 		token = strtok(NULL, " \n\t");
 	}
 	free(str_copy);
-
 	spstr = malloc((cantidad + 1) * sizeof(char *));
 	if (spstr == NULL)
 		return (NULL);
-
 	str_copy = strdup(str);
 	if (str_copy == NULL)
 	{
 		free(spstr);
 		return (NULL);
 	}
-
 	token = strtok(str_copy, " \n\t");
 	while (token != NULL)
 	{
@@ -67,7 +63,6 @@ char **splitstr(char *str)
 	}
 	spstr[i] = NULL;
 	free(str_copy);
-
 	return (spstr);
 }
 
@@ -114,11 +109,9 @@ int main(void)
 			break;
 		if (strcmp(string, "\n") == 0)
 			continue;
-
 		split = splitstr(string);
 		if (split == NULL)
 			continue;
-
 		if (access(split[0], F_OK) == 0)
 		{
 			execute_command(split[0], split, environ);
@@ -132,9 +125,7 @@ int main(void)
 				free(com_path);
 			}
 			else
-			{
 				printf("not found: %s\n", split[0]);
-			}
 		}
 		freestr(split);
 		split = NULL;
