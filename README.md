@@ -1,21 +1,21 @@
 # Simple Shell
 
-Bienvenidos a Simple Shell. Este proyecto implementa un shell simple en C, simulando funcionalidades b谩sicas de un shell Unix. Permite ejecutar comandos de manera interactiva o desde un archivo.
+Bienvenidos a Simple Shell. Este proyecto implementa un shell simple en C, simulando funcionalidades baicas de un shell Unix. Permite ejecutar comandos de manera interactiva o desde un archivo.
 
 ---
 
 ## Archivos del proyecto:
 
-- `shell.c`: Archivo principal del proyecto. Contiene el bucle del shell y toda la l贸gica principal.
+- `shell.c`: Archivo principal del proyecto, contiene el bucle del shell y toda la l贸gica principal
 - `environ.c`: Funciones relacionadas con el manejo del entorno, como buscar comandos en el `PATH`.
 - `myshell.h`: Archivo de cabecera que contiene las definiciones de funciones y macros.
-- `README.md`: Este archivo, explica c贸mo funciona el proyecto y c贸mo usarlo.
+- `README.md`: Este archivo, explica co砿o funciona el proyecto  co砿o usarlo.
 - `AUTHORS`: Lista de los autores que trabajaron en el proyecto.
-- `man_1_simple_shell`: P谩gina de manual que explica c贸mo usar el shell.
+- `man_1_simple_shell`: Paina de manual que explic co砿o usar el shell
 
 ---
 
-## Com硃ilac胣
+## Compilacion
 
 Para compilar el shell, se utiliza el siguiente comando en la terminal:
 
