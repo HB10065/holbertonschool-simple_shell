@@ -1,6 +1,21 @@
 #include "myshell.h"
 
 /**
+ *
+ */
+void execute_env(void)
+{
+	extern char **environ;
+	int i = 0;
+
+	while (environ[i] != NULL)
+	{
+		printf("%s\n", environ[i]);
+		i++;
+	}
+}
+
+/**
  * env - Obtiene la variable PATH del entorno
  * Return: Un string con el contenido de la variable PATH
  */

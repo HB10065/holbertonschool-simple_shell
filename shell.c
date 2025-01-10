@@ -139,7 +139,9 @@ int main(void)
 		else
 		{
 			com_path = path(split[0]);
-			if (com_path != NULL)
+			if (strcmp(com_path, "env") == 0)
+				execute_env();
+			else if (com_path != NULL)
 			{
 				status = execute_command(com_path, split, environ);
 				free(com_path);
