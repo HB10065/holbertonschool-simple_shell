@@ -4,7 +4,7 @@ Bienvenidos a Simple Shell. Este proyecto implementa un shell simple en C, simul
 
 ---
 
-## Archivos del proyecto
+## Archivos del proyecto:
 
 - `shell.c`: Archivo principal del proyecto. Contiene el bucle del shell y toda la l√≥gica principal.
 - `environ.c`: Funciones relacionadas con el manejo del entorno, como buscar comandos en el `PATH`.
@@ -15,7 +15,7 @@ Bienvenidos a Simple Shell. Este proyecto implementa un shell simple en C, simul
 
 ---
 
-## C√≥mo compil el shell
+## Co≥pilaci√n
 
 Para compilar el shell, se utiliza el siguiente comando en la terminal:
 
