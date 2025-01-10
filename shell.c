@@ -110,12 +110,13 @@ int main(void)
 		if (strcmp(string, "\n") == 0)
 			continue;
 		split = splitstr(string);
-		if (split == NULL)
-			continue;
-		if (access(split[0], F_OK) == 0)
+		if (split == NULL || split[0] == NULL)
 		{
-			execute_command(split[0], split, environ);
+			free(str);
+			continue;
 		}
+		if (access(split[0], F_OK) == 0)
+			execute_command(split[0], split, environ);
 		else
 		{
 			com_path = path(split[0]);
