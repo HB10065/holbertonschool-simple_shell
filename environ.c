@@ -55,7 +55,7 @@ char	*path(char *str)
 	while (token != NULL)
 	{
 		len = strlen(token) + strlen(str) + 2;
-		temp = realloc(final_path, len);
+		temp = _realloc(final_path, len);
 		if (temp == NULL)
 		{
 			free(final_path);

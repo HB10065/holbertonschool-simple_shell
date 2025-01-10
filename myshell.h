@@ -13,5 +13,6 @@ char **splitstr(char *str);
 char *env(void);
 char *path(char *str);
 void freestr(char **str);
+char *_realloc(char *str,size_t new_size);
 
 #endif

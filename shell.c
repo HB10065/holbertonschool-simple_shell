@@ -1,6 +1,18 @@
 #include "myshell.h"
 
 /**
+ *
+ */
+char *_realloc(char *str, size_t new_size)
+{
+	char *new_str;
+
+	free(str);
+	new_str = malloc(new_size);
+	return(new_str);
+}
+
+/**
  * freestr - Libera un array de strings
  * @str: Array de strings
  */
@@ -134,4 +146,3 @@ int main(void)
 	free(string);
 	return (0);
 }
-
