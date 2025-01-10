@@ -112,7 +112,7 @@ int main(void)
 		split = splitstr(string);
 		if (split == NULL || split[0] == NULL)
 		{
-			free(str);
+			freestr(split);
 			continue;
 		}
 		if (access(split[0], F_OK) == 0)
