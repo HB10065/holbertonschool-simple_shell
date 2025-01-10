@@ -15,7 +15,7 @@ Bienvenidos a Simple Shell. Este proyecto implementa un shell simple en C, simul
 
 ---
 
-## Co≥pilaci√n
+## Com≥pilac√n
 
 Para compilar el shell, se utiliza el siguiente comando en la terminal:
 
