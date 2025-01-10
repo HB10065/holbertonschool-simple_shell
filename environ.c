@@ -15,7 +15,7 @@ char	*env(void)
 	{
 		if (environ[i][0] == 'P' && environ[i][1] == 'A'
 				&& environ[i][2] == 'T' && environ[i][3] == 'H' &&
-				(environ[i][4] == '=' || environ[i][4] == '1'))
+				environ[i][4] == '=')
 		{
 			path_size = strlen(environ[i] + 5);
 			pathd = malloc(path_size + 1);
