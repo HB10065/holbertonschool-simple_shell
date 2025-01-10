@@ -122,7 +122,10 @@ int main(void)
 			printf("Sheesh: ");
 		gl = getline(&string, &strlength, stdin);
 		if (gl == -1 || strcmp(string, "exit\n") == 0)
+		{
+			status = 2;
 			break;
+		}
 		if (strcmp(string, "\n") == 0)
 			continue;
 		split = splitstr(string);
