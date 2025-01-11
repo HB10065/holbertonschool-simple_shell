@@ -20,9 +20,11 @@ Bienvenidos a Simple Shell. Este proyecto implementa un shell simple en C, simul
 Para compilar el shell, se utiliza el siguiente comando en la terminal:
 
 ```bash
-gcc -Wall -Werror -Wextra -pedantic shell.c environ.c -o hsh
+gcc -Wall -Werror -Wextra -pedantic shell.c environ.c -o hsh 
 
-   ```markdown
-   ![flowchart](https://github.com/HB10065/holbertonschool-simple_shell/blob/main/ShellFlowchart.png?raw=true)
 
+
+## Diagrama de flujo
+
+![Flowchart](https://github.com/HB10065/holbertonschool-simple_shell/blob/main/ShellFlowchart.png?raw=true)
 
