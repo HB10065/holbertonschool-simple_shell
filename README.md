@@ -2,7 +2,6 @@
 
 Bienvenidos a Simple Shell. Este proyecto implementa un shell simple en C, simulando funcionalidades basicas de un shell Unix. Permite ejecutar comandos de manera interactiva o desde un archivo.
 
----
 
 ## Archivos del proyecto:
 
@@ -13,15 +12,12 @@ Bienvenidos a Simple Shell. Este proyecto implementa un shell simple en C, simul
 - `AUTHORS`: Lista de los autores que trabajaron en el proyecto.
 - `man_1_simple_shell`: Pagina de manual que explica como usar el shel.
 
----
 
 ## Compilacion
 
 Para compilar el shell, se utiliza el siguiente comando en la terminal:
 
-```bash
-gcc -Wall -Werror -Wextra -pedantic shell.c environ.c -o hsh 
-
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 
 ## Diagrama de flujo
