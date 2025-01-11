@@ -22,6 +22,7 @@ Para compilar el shell, se utiliza el siguiente comando en la terminal:
 ```bash
 gcc -Wall -Werror -Wextra -pedantic shell.c environ.c -o hsh
 
+   ```markdown
+   ![flowchart](https://github.com/HB10065/holbertonschool-simple_shell/blob/main/ShellFlowchart.png?raw=true)
 
-![flowchart](https://github.com/HB10065/holbertonschool-simple_shell/blob/main/ShellFlowchart.png?raw=true)
 
